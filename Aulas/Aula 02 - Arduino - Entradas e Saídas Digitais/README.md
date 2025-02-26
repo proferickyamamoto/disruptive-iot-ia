@@ -13,7 +13,7 @@ Nesta aula, exploraremos a utilização de entradas e saídas digitais no Arduin
 ## 🔌 Esquemático do Circuito
 O circuito consiste em um botão de entrada e três LEDs conectados ao Arduino. Veja a configuração abaixo:
 
-![Esquemático]([Aulas/Aula%2002%20-%20Arduino%20-%20Entradas%20e%20Sa%C3%ADdas%20Digitais/Esquema%20El%C3%A9trico/Circuito_BT_LED.png](https://github.com/proferickyamamoto/disruptive-iot-ia/blob/ce38acc858a0b6f301798fce21d673ff668afb56/Aulas/Aula%2002%20-%20Arduino%20-%20Entradas%20e%20Sa%C3%ADdas%20Digitais/Esquema%20El%C3%A9trico/Circuito_BT_LED.png))
+![Esquemático](https://github.com/proferickyamamoto/disruptive-iot-ia/blob/main/Aulas/Aula%2002%20-%20Arduino%20-%20Entradas%20e%20Sa%C3%ADdas%20Digitais/Esquema%20El%C3%A9trico/Circuito_BT_LED.png)
 
 ### 📍 Ligações Principais:
 
