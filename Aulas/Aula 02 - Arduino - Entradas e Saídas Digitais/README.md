@@ -13,7 +13,7 @@ Nesta aula, exploraremos a utilização de entradas e saídas digitais no Arduin
 ## 🔌 Esquemático do Circuito
 O circuito consiste em um botão de entrada e três LEDs conectados ao Arduino. Veja a configuração abaixo:
 
-![Esquemático](LED_BT.txt)
+![Esquemático](Aulas/Aula 02 - Arduino - Entradas e Saídas Digitais/Esquema Elétrico/Circuito_BT_LED.png)
 
 ### 📍 Ligações Principais:
 
