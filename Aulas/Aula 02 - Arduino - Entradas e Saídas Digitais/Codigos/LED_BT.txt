@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "author": "Erick T. Yamamoto",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-breadboard", "id": "bb1", "top": -22.2, "left": -54.8, "attrs": {} },
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": -18.6, "left": -365.4, "attrs": {} },
+    { "type": "wokwi-led", "id": "led1", "top": 15.6, "left": -5.8, "attrs": { "color": "red" } },
+    { "type": "wokwi-led", "id": "led2", "top": 15.6, "left": 90.2, "attrs": { "color": "blue" } },
+    {
+      "type": "wokwi-led",
+      "id": "led3",
+      "top": 15.6,
+      "left": 186.2,
+      "attrs": { "color": "yellow" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 61.55,
+      "left": 19.2,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 61.55,
+      "left": 115.2,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": 61.55,
+      "left": 211.2,
+      "attrs": { "value": "1000" }
+    }
+  ],
+  "connections": [
+    [ "uno:GND.3", "bb1:bn.1", "black", [ "v28.7", "h176.8" ] ],
+    [ "bb1:5t.e", "bb1:bn.3", "black", [ "v0" ] ],
+    [ "bb1:15t.e", "bb1:bn.11", "black", [ "v0" ] ],
+    [ "bb1:25t.e", "bb1:bn.20", "black", [ "v0" ] ],
+    [ "led1:A", "bb1:6t.d", "", [ "$bb" ] ],
+    [ "led1:C", "bb1:5t.d", "", [ "$bb" ] ],
+    [ "led2:A", "bb1:16t.d", "", [ "$bb" ] ],
+    [ "led2:C", "bb1:15t.d", "", [ "$bb" ] ],
+    [ "led3:A", "bb1:26t.d", "", [ "$bb" ] ],
+    [ "led3:C", "bb1:25t.d", "", [ "$bb" ] ],
+    [ "r1:1", "bb1:6t.e", "", [ "$bb" ] ],
+    [ "r1:2", "bb1:12t.e", "", [ "$bb" ] ],
+    [ "r2:1", "bb1:16t.e", "", [ "$bb" ] ],
+    [ "r2:2", "bb1:22t.e", "", [ "$bb" ] ],
+    [ "r3:1", "bb1:26t.e", "", [ "$bb" ] ],
+    [ "r3:2", "bb1:32t.e", "", [ "$bb" ] ],
+    [ "bb1:12t.a", "uno:3", "red", [ "v-67.2", "h-211.2" ] ],
+    [ "bb1:22t.a", "uno:8", "blue", [ "v-76.8", "h-364.8" ] ],
+    [ "bb1:32t.a", "uno:11", "gold", [ "v-86.4", "h-489.6" ] ]
+  ],
+  "dependencies": {}
+}
