@@ -13,7 +13,7 @@ Nesta aula, exploraremos a utilização de entradas e saídas digitais no Arduin
 ## 🔌 Esquemático do Circuito
 O circuito consiste em um botão de entrada e três LEDs conectados ao Arduino. Veja a configuração abaixo:
 
-![Esquemático](Aulas/Aula 02 - Arduino - Entradas e Saídas Digitais/Esquema Elétrico/Circuito_BT_LED.png)
+![Esquemático](Aulas/Aula%2002%20-%20Arduino%20-%20Entradas%20e%20Sa%C3%ADdas%20Digitais/Esquema%20El%C3%A9trico/Circuito_BT_LED.png)
 
 ### 📍 Ligações Principais:
 
@@ -59,18 +59,3 @@ void piscaLED() {
   digitalWrite(LED_RED, LOW);
   delay(1000);
 }
-```
-
-## 🚀 Como Testar
-1. **Monte o circuito** conforme o esquemático.
-2. **Carregue o código no Arduino** usando a IDE Arduino.
-3. **Pressione o botão** e observe os LEDs piscando de acordo com a lógica implementada.
-
-## 📢 Dicas
-- Utilize o monitor serial para depuração se necessário.
-- Caso os LEDs não acendam corretamente, verifique a ligação dos pinos.
-
-## 📩 Contato
-Dúvidas ou sugestões? Entre em contato com o professor!
-
-
