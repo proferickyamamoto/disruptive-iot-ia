@@ -9,10 +9,12 @@ Bem-vindo(a) ao repositório! Aqui você encontrará materiais de estudo, inclui
 |-- 📄 Aulas/
 |   |-- Aula 01.pdf
 |   |-- Aula 02.pdf
+|   |-- README.md
 |
-|-- 📂 Notebooks/
+|-- 📂 Códigos/
 |   |-- Aula 01.c
 |   |-- Aula 02.c
+|   |-- README.md
 |
 |-- README.md
 ```
@@ -21,15 +23,14 @@ Bem-vindo(a) ao repositório! Aqui você encontrará materiais de estudo, inclui
 Os arquivos de aula estão disponíveis na pasta [`Aulas`](Aulas/). Cada PDF contém materiais teóricos e explicações detalhadas sobre os tópicos abordados.
 
 ## 💻 Notebooks
-Os notebooks Python estão na pasta [`Notebooks`](Notebooks/). Eles incluem exemplos práticos, códigos comentados e execução passo a passo para facilitar o aprendizado.
+Os notebooks Python estão na pasta [`Códigos`](Codigos/). Eles incluem exemplos práticos, códigos comentados e execução passo a passo para facilitar o aprendizado.
 
 ## 🚀 Como Utilizar
 1. **Baixar os arquivos:** Você pode clonar este repositório ou baixar arquivos individuais.
-2. **Executar os Notebooks:**
-   - Utilize o Google Colab ou o Jupyter Notebook para abrir os arquivos `.ipynb`.
-   - Certifique-se de ter as dependências instaladas. Caso necessário, use:
-     ```bash
-     pip install -r requirements.txt
+2. **Clonar o repositório:**
+   ```bash
+   git clone https://github.com/seu_usuario/seu_repositorio.git
+
      ```
 3. **Estudar as Aulas:** Leia os PDFs para compreender os conceitos antes de executar os exemplos práticos.
 
@@ -41,5 +42,5 @@ Para dúvidas ou sugestões, você pode entrar em contato via [proferick.yamamot
 
 ---
 ✍️ **Responsável:** [Erick Toshio Yamamoto]  
-📅 **Última Atualização:** [Data]
+📅 **Última Atualização:** [26/02/2025]
 
