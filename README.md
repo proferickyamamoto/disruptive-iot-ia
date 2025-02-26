@@ -11,19 +11,12 @@ Bem-vindo(a) ao repositório! Aqui você encontrará materiais de estudo, inclui
 |   |-- Aula 02.pdf
 |   |-- README.md
 |
-|-- 📂 Códigos/
-|   |-- Aula 01.c
-|   |-- Aula 02.c
-|   |-- README.md
 |
 |-- README.md
 ```
 
 ## 📘 Aulas
 Os arquivos de aula estão disponíveis na pasta [`Aulas`](Aulas/). Cada PDF contém materiais teóricos e explicações detalhadas sobre os tópicos abordados.
-
-## 💻 Notebooks
-Os notebooks Python estão na pasta [`Códigos`](Codigos/). Eles incluem exemplos práticos, códigos comentados e execução passo a passo para facilitar o aprendizado.
 
 ## 🚀 Como Utilizar
 1. **Baixar os arquivos:** Você pode clonar este repositório ou baixar arquivos individuais.
