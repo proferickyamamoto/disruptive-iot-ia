@@ -1,6 +1,6 @@
 # 📚 Repositório de Aulas e Códigos
 
-Bem-vindo(a) ao repositório! Aqui você encontrará materiais de estudo, incluindo aulas em formato PDF e códigos em C, organizados por temas.
+Bem-vindo(a) ao repositório! Aqui você encontrará materiais de estudo, incluindo aulas em formato PDF e códigos em C++, organizados por temas.
 
 ## 📂 Estrutura do Repositório
 
