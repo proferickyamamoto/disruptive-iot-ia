@@ -59,9 +59,9 @@ void piscaLED() {
   digitalWrite(LED_RED, LOW);
   delay(1000);
 }
+```
 
-
-🚀 Como Testar
+### 🚀 Como Testar
 
 Monte o circuito conforme o esquemático.
 
@@ -69,13 +69,13 @@ Carregue o código no Arduino usando a IDE Arduino.
 
 Pressione o botão e observe os LEDs piscando de acordo com a lógica implementada.
 
-📢 Dicas
+### 📢 Dicas
 
 Utilize o monitor serial para depuração se necessário.
 
 Caso os LEDs não acendam corretamente, verifique a ligação dos pinos.
 
-📩 Contato
+### 📩 Contato
 
 Dúvidas ou sugestões? Entre em contato com o professor!
 
