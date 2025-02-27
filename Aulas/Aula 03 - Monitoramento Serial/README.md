@@ -53,7 +53,29 @@ O **baud rate** define a velocidade de transmissão dos dados na comunicação s
 
 Caso o baud rate definido no código não corresponda ao baud rate configurado no **Monitor Serial**, os dados exibidos poderão aparecer corrompidos ou ilegíveis. Certifique-se de selecionar `9600 baud` no Monitor Serial para correta exibição das informações.
 
+## 🔍 Explicação da Conversão de Temperatura
+A linha de código abaixo realiza a conversão do valor analógico do sensor de temperatura para graus Celsius:
+
+```cpp
+float temperatura = (leituraAnalogica * 5.0 / 1023.0) * 100.0;
+```
+
+### 📌 Como funciona essa conversão?
+1. **`analogRead(SENSOR_TEMP)`**: Retorna um valor entre 0 e 1023, correspondente à leitura do pino analógico.
+2. **`(leituraAnalogica * 5.0 / 1023.0)`**: Converte o valor lido para tensão (de 0V a 5V).
+3. **`* 100.0`**: O sensor LM35 possui uma relação de 10mV/°C, ou seja, cada 0.01V equivale a 1°C. Multiplicamos por 100 para obter a temperatura real em graus Celsius.
+
+Exemplo:
+- Se `leituraAnalogica = 512`, então:
+  - `tensão = (512 * 5.0 / 1023.0) ≈ 2.5V`
+  - `temperatura = 2.5V * 100 = 25°C`
+
+Isso significa que o código converte corretamente a leitura analógica do sensor para um valor de temperatura utilizável.
+
+> ## 💡 TIPS
+> - Certifique-se de que a taxa de transmissão configurada no Monitor Serial corresponde ao valor definido no código (`Serial.begin(9600);`).
+> - Caso veja caracteres estranhos no Monitor Serial, tente ajustar a taxa de transmissão para o valor correto.
+> - Se o sensor estiver retornando valores inconsistentes, verifique as conexões e a alimentação.
+
 ## 📩 Contato
 Dúvidas ou sugestões? Entre em contato com o professor!
-
-
