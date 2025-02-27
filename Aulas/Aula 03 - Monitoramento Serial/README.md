@@ -72,10 +72,33 @@ Exemplo:
 
 Isso significa que o código converte corretamente a leitura analógica do sensor para um valor de temperatura utilizável.
 
-> ## 💡 TIPS
+## 🖥️ Como Funciona a Função Serial.print
+A função `Serial.print()` é usada para enviar dados do Arduino para o computador via comunicação serial, exibindo as informações no **Monitor Serial** da IDE Arduino.
+
+### 📌 Principais Comandos
+- **`Serial.print(valor);`** → Exibe um valor no monitor serial **sem** pular para a linha seguinte.
+- **`Serial.println(valor);`** → Exibe um valor e pula para a próxima linha.
+
+### 📍 Exemplo
+```cpp
+Serial.print("Temperatura: ");
+Serial.print(temperatura);
+Serial.println(" °C");
+```
+Isso exibirá no Monitor Serial:
+```
+Temperatura: 25.00 °C
+Temperatura: 25.10 °C
+Temperatura: 24.90 °C
+```
+Caso `Serial.println()` fosse removido, os valores apareceriam concatenados na mesma linha.
+
+## 💡 TIPS
 > - Certifique-se de que a taxa de transmissão configurada no Monitor Serial corresponde ao valor definido no código (`Serial.begin(9600);`).
 > - Caso veja caracteres estranhos no Monitor Serial, tente ajustar a taxa de transmissão para o valor correto.
 > - Se o sensor estiver retornando valores inconsistentes, verifique as conexões e a alimentação.
+> - Utilize `Serial.print()` para imprimir dados no mesmo formato e `Serial.println()` para pular uma linha e manter a saída organizada.
 
 ## 📩 Contato
 Dúvidas ou sugestões? Entre em contato com o professor!
+
