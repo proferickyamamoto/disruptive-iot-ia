@@ -7,13 +7,16 @@ Bem-vindo(a) ao repositório! Aqui você encontrará materiais de estudo, inclui
 ```
 /
 |-- 📄 Aulas/
-|   |-- Aula 01.pdf
-|   |-- Aula 02.pdf
 |   |-- README.md
-|
-|
+|   |-- Aula 01.1
+|   |   |-- Aula_01.pdf ou Código e Json
+|   |   |   |-- README.md
+|   |-- Aula 02.1
+|   |   |-- Aula_02.pdf ou Código e Json
+|   |   |-- README.md
 |-- README.md
 ```
+
 
 ## 📘 Aulas
 Os arquivos de aula estão disponíveis na pasta [`Aulas`](Aulas/). Cada PDF contém materiais teóricos e explicações detalhadas sobre os tópicos abordados.
