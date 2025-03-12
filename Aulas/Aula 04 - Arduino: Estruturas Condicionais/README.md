@@ -1,14 +1,30 @@
-## Aula 04 - Estruturas Condicionais no Arduino
+## 📘 Aula 04 - Estruturas Condicionais no Arduino
 
-### Objetivo
+Nesta aula, aprenderemos a utilizar as principais estruturas condicionais no Arduino: `if-else`, `do-while` e `for`. Essas estruturas são essenciais para o controle do fluxo de execução do código, permitindo decisões automáticas baseadas em condições e a repetição de ações conforme necessário.
+
+---
+
+### 🎯 Objetivo
 Compreender e aplicar estruturas condicionais no Arduino para controlar fluxos de execução de código de forma eficiente. Vamos explorar as estruturas `if-else`, `do-while` e `for`, essenciais para a programação de sistemas embarcados.
 
-### Motivação
+### 🔥 Motivação
 As estruturas condicionais são fundamentais para qualquer projeto em Arduino, pois permitem que o código tome decisões automáticas com base em sensores e variáveis. Com esse conhecimento, será possível criar desde sistemas simples de acionamento de LEDs até projetos avançados de automação e IoT.
 
 ---
 
-### 1. Estrutura `if-else`
+### 🔧 Materiais Necessários
+- **Placa Arduino UNO ou ESP32**
+- **LEDs e resistores**
+- **Buzzer ativo**
+- **Sensor de Luz (LDR)**
+- **Botão push-button**
+- **Protoboard e jumpers**
+
+---
+
+### 🛠️ Estruturas Condicionais no Arduino
+
+#### 📌 1. Estrutura `if-else`
 O `if-else` é utilizado para executar blocos de código com base em condições lógicas.
 
 ```cpp
@@ -31,7 +47,7 @@ void loop() {
 
 ---
 
-### 2. Estrutura `do-while`
+#### 📌 2. Estrutura `do-while`
 A estrutura `do-while` executa um bloco de código pelo menos uma vez e continua repetindo enquanto a condição for verdadeira.
 
 ```cpp
@@ -55,7 +71,7 @@ void loop() {
 
 ---
 
-### 3. Estrutura `for`
+#### 📌 3. Estrutura `for`
 O `for` é usado para executar um bloco de código um número determinado de vezes.
 
 ```cpp
@@ -71,6 +87,14 @@ void loop() {
     }
 }
 ```
+
+---
+
+### 🚀 Como Testar
+1. **Monte o circuito** de acordo com os exemplos fornecidos.
+2. **Carregue o código** no Arduino usando a IDE Arduino.
+3. **Abra o Monitor Serial** (Ferramentas > Monitor Serial).
+4. **Observe os valores** sendo exibidos e verifique o funcionamento correto.
 
 ---
 
@@ -100,4 +124,3 @@ void loop() {
 
 ---
 Essa é uma excelente oportunidade para entender como os fluxos condicionais influenciam os sistemas embarcados! 🚀
-
