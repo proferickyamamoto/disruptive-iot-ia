@@ -124,3 +124,7 @@ void loop() {
 
 ---
 Essa é uma excelente oportunidade para entender como os fluxos condicionais influenciam os sistemas embarcados! 🚀
+
+---
+📩 Contato
+Dúvidas ou sugestões? Entre em contato com o professor!"
