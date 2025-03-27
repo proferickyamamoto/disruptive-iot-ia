@@ -1,4 +1,4 @@
-# 📘 Aula 03 - Arduino - Monitoramento Serial
+# 📘 Aula 03.1 - Arduino - Monitoramento Serial
 
 Nesta aula, aprenderemos a utilizar a comunicação serial do Arduino para monitorar sensores e depurar códigos. O monitor serial é uma ferramenta essencial para visualizar dados enviados pelo Arduino ao computador.
 
