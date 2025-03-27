@@ -1,4 +1,4 @@
-## 📘 Aula 05 - Conectividade em IoT: Wi-Fi, Bluetooth e MQTT
+## 📘 Aula 05.1 - Conectividade em IoT: Wi-Fi, Bluetooth e MQTT
 
 Nesta aula, exploraremos os principais métodos de **comunicação sem fio** para projetos de **Internet das Coisas (IoT)** usando **ESP32** e **Arduino**. Veremos como utilizar **Wi-Fi**, **Bluetooth** e uma introdução prática ao protocolo **MQTT**, essencial para sistemas IoT modernos.
 
