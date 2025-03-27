@@ -13,16 +13,22 @@ A conectividade é o coração dos sistemas IoT. Com Wi-Fi e Bluetooth, é poss�
 ---
 
 ### 🔧 Materiais Necessários
-- **ESP32** (com Wi-Fi e Bluetooth integrados)
-- **Arduino UNO com módulo ESP8266 (opcional)**
-- **Sensor de temperatura, LDR ou potenciômetro**
-- **Protoboard e jumpers**
+- ESP32 (com Wi-Fi e Bluetooth integrados)
+- Arduino UNO com módulo ESP8266 (opcional)
+- Sensor de temperatura, LDR ou potenciômetro
+- Protoboard e jumpers
 
 ---
 
 ### 📡 Conectividade Wi-Fi com ESP32
 
-#### Exemplo: Conectando o ESP32 à rede Wi-Fi
+#### ✅ Passo a Passo
+1. Substitua "SEU_SSID" e "SUA_SENHA" com o nome e senha da sua rede Wi-Fi.
+2. Carregue o código no ESP32.
+3. Abra o Serial Monitor para verificar se a conexão foi bem-sucedida.
+4. Anote o endereço IP exibido para possíveis integrações futuras.
+
+#### 💻 Exemplo: Conectando o ESP32 à rede Wi-Fi
 ```cpp
 #include <WiFi.h>
 
@@ -47,11 +53,22 @@ void loop() {
 }
 ```
 
+📌 **Explicação:**
+- `WiFi.begin()` inicia a conexão com a rede.
+- O laço `while` aguarda até que a conexão seja estabelecida.
+- `WiFi.localIP()` retorna o IP atribuído ao ESP32 na rede.
+
 ---
 
 ### 🔷 Comunicação Bluetooth com ESP32
 
-#### Exemplo: Enviando mensagens via Bluetooth
+#### ✅ Passo a Passo
+1. Substitua o nome do dispositivo Bluetooth se desejar personalizar.
+2. Carregue o código no ESP32.
+3. Utilize o celular ou outro dispositivo Bluetooth para parear.
+4. Envie caracteres via terminal Bluetooth (como o aplicativo Serial Bluetooth Terminal).
+
+#### 💻 Exemplo: Enviando mensagens via Bluetooth
 ```cpp
 #include "BluetoothSerial.h"
 
@@ -72,18 +89,22 @@ void loop() {
 }
 ```
 
+📌 **Explicação:**
+- `BluetoothSerial SerialBT` instancia a comunicação Bluetooth.
+- `SerialBT.begin()` define o nome visível ao parear.
+- `SerialBT.read()` lê o caractere recebido.
+
 ---
 
 ### 📡 Introdução ao Protocolo MQTT
 
-O **MQTT** (Message Queuing Telemetry Transport) é um protocolo leve de mensagens **publicador/assinante**, ideal para dispositivos embarcados com pouca largura de banda.
+#### ✅ Passo a Passo
+1. Conecte o ESP32 ao Wi-Fi normalmente.
+2. Instale a biblioteca `PubSubClient` pela IDE Arduino.
+3. Use um broker público como `broker.hivemq.com` ou `test.mosquitto.org`.
+4. Publique dados e teste com ferramentas como MQTT Dash ou MQTT Explorer.
 
-#### Fluxo de Funcionamento
-- Dispositivo se **conecta a um broker MQTT**.
-- Pode **publicar mensagens** em tópicos.
-- Pode **assinar tópicos** e receber mensagens publicadas por outros dispositivos.
-
-#### Exemplo com ESP32 (usando biblioteca PubSubClient)
+#### 💻 Exemplo com ESP32 (usando biblioteca PubSubClient)
 ```cpp
 #include <WiFi.h>
 #include <PubSubClient.h>
@@ -129,30 +150,4 @@ void loop() {
 }
 ```
 
----
-
-### 🎯 Atividade Prática
-1. Conecte o ESP32 ao Wi-Fi de sua casa ou da escola.
-2. Envie uma mensagem para o Monitor Serial ao conectar.
-3. Modifique o exemplo MQTT para publicar a leitura de um sensor analógico (ex: LDR).
-4. Use o aplicativo MQTT Dash ou MQTT Explorer para visualizar os dados publicados.
-
----
-
-### 🤝 Atividade em Dupla
-**Objetivo:** Criar um sistema de comunicação simples entre dois ESP32:
-- Um envia uma mensagem via Bluetooth.
-- O outro lê essa mensagem e aciona um LED com base no conteúdo recebido.
-
----
-
-### 🧠 Desafio
-Implemente um sistema com ESP32 que:
-- Se conecte ao Wi-Fi;
-- Publique valores de um sensor em um tópico MQTT;
-- Leia comandos recebidos de outro dispositivo (como um celular ou outro ESP32) e execute ações como acender LEDs ou tocar um buzzer.
-
-**Dica:** Use tópicos diferentes para comandos e dados.
-
----
-Essa aula marca a entrada prática na Internet das Coisas, conectando o mundo físico à nuvem e a outros dispositivos! 🌐📲
+📌 **Explicação
