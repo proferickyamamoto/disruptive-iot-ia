@@ -1,4 +1,4 @@
-# 📘 Aula 02 - Arduino - Entradas e Saídas Digitais
+# 📘 Aula 02.1 - Arduino - Entradas e Saídas Digitais
 
 Nesta aula, exploraremos a utilização de entradas e saídas digitais no Arduino. O objetivo é entender como acionar LEDs e ler o estado de um botão, aplicando os conceitos de eletrônica e programação.
 
