@@ -1,4 +1,4 @@
-## 📘 Aula 04 - Estruturas Condicionais no Arduino
+## 📘 Aula 04.1 - Estruturas Condicionais no Arduino
 
 Nesta aula, aprenderemos a utilizar as principais estruturas condicionais no Arduino: `if-else`, `do-while` e `for`. Essas estruturas são essenciais para o controle do fluxo de execução do código, permitindo decisões automáticas baseadas em condições e a repetição de ações conforme necessário.
 
