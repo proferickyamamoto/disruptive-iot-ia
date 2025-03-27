@@ -33,11 +33,11 @@ Usado para medir distância com base em ondas sonoras.
 4. Abra o Serial Monitor para verificar as distâncias medidas.
 
 ```cpp
-#define TRIG 9
-#define ECHO 10
+#define TRIG 9 // GPIO 5 para ESP32
+#define ECHO 10 // GPIO 18 para ESP32
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(9600); //Não esquecer de alterar para 115200 para ESP32
   pinMode(TRIG, OUTPUT);
   pinMode(ECHO, INPUT);
 }
