@@ -150,4 +150,36 @@ void loop() {
 }
 ```
 
-📌 **Explicação
+📌 **Explicação:**
+- O ESP32 se conecta ao broker MQTT.
+- `client.subscribe()` escuta mensagens de um tópico.
+- `client.publish()` envia mensagens para o broker.
+- Pode ser monitorado com apps MQTT.
+
+---
+
+### 🎯 Atividade Prática
+1. Conecte o ESP32 ao Wi-Fi de sua casa ou da escola.
+2. Envie uma mensagem para o Monitor Serial ao conectar.
+3. Modifique o exemplo MQTT para publicar a leitura de um sensor analógico (ex: LDR).
+4. Use o aplicativo MQTT Dash ou MQTT Explorer para visualizar os dados publicados.
+
+---
+
+### 🤝 Atividade em Dupla
+**Objetivo:** Criar um sistema de comunicação simples entre dois ESP32:
+- Um envia uma mensagem via Bluetooth.
+- O outro lê essa mensagem e aciona um LED com base no conteúdo recebido.
+
+---
+
+### 🧠 Desafio
+Implemente um sistema com ESP32 que:
+- Se conecte ao Wi-Fi;
+- Publique valores de um sensor em um tópico MQTT;
+- Leia comandos recebidos de outro dispositivo (como um celular ou outro ESP32) e execute ações como acender LEDs ou tocar um buzzer.
+
+📌 Dica: Use tópicos diferentes para comandos e dados.
+
+---
+Esta aula mostrou como utilizar Wi-Fi, Bluetooth e MQTT no ESP32 para integrar sensores, atuadores e conectividade — o início da automação e monitoramento remoto com IoT! 🌐📲
