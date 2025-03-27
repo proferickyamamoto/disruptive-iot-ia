@@ -1,4 +1,4 @@
-## 📘 Aula 06 - Sensores e Atuadores: Leitura e Ação no Mundo Físico
+## 📘 Aula 06.1 - Sensores e Atuadores: Leitura e Ação no Mundo Físico
 
 Nesta aula, vamos explorar sensores que permitem **a leitura do ambiente físico**, como **ultrassom**, **piezoelétrico**, **sensor de presença (PIR)** e **RFID**. Também abordaremos a atuação em resposta às leituras, como acionamento de LEDs, buzzers ou motores.
 
