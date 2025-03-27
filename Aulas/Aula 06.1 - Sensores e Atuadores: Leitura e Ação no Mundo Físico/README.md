@@ -26,6 +26,12 @@ Sensores são os "olhos" e "ouvidos" do sistema embarcado, enquanto atuadores s�
 ### 📏 Sensor Ultrassônico HC-SR04
 Usado para medir distância com base em ondas sonoras.
 
+#### ✅ Passo a Passo
+1. Conecte os pinos TRIG e ECHO aos pinos digitais do Arduino.
+2. Alimente o sensor com 5V e GND.
+3. Carregue o código abaixo.
+4. Abra o Serial Monitor para verificar as distâncias medidas.
+
 ```cpp
 #define TRIG 9
 #define ECHO 10
@@ -53,10 +59,17 @@ void loop() {
 }
 ```
 
+📌 **Explicação:** A função `pulseIn()` mede o tempo de resposta do sinal refletido. A fórmula converte isso em centímetros.
+
 ---
 
 ### 🎵 Sensor Piezoelétrico
 Detecta vibração ou batidas. Ideal para toque, segurança ou percussão.
+
+#### ✅ Passo a Passo
+1. Conecte o piezo ao pino analógico A0.
+2. Fixe o sensor em uma superfície sólida.
+3. Carregue o código e observe o Serial Monitor.
 
 ```cpp
 int piezoPin = A0;
@@ -74,10 +87,17 @@ void loop() {
 }
 ```
 
+📌 **Explicação:** A leitura analógica varia com base na vibração. Acima de um limite, considera-se que houve um impacto.
+
 ---
 
 ### 👁️ Sensor de Presença PIR
 Detecta movimento de pessoas baseado em calor (infravermelho passivo).
+
+#### ✅ Passo a Passo
+1. Conecte o PIR ao pino digital 2.
+2. Alimente com 5V e GND.
+3. Carregue o código e movimente-se em frente ao sensor.
 
 ```cpp
 int pirPin = 2;
@@ -98,12 +118,17 @@ void loop() {
 }
 ```
 
+📌 **Explicação:** O sensor retorna `HIGH` quando detecta calor em movimento (pessoas).
+
 ---
 
 ### 🆔 Leitor RFID RC522
 Permite identificação por radiofrequência com tags ou cartões.
 
-> Requer bibliotecas: `MFRC522` e `SPI`
+#### ✅ Passo a Passo
+1. Conecte o módulo RFID aos pinos SPI do Arduino (10, 11, 12, 13).
+2. Carregue a biblioteca `MFRC522` na IDE Arduino.
+3. Carregue o código abaixo e aproxime a tag do leitor.
 
 ```cpp
 #include <SPI.h>
@@ -131,6 +156,8 @@ void loop() {
 }
 ```
 
+📌 **Explicação:** A leitura UID permite identificar cada tag individualmente. Pode-se armazenar UIDs autorizados.
+
 ---
 
 ### 🤖 Atividade Prática
@@ -152,4 +179,4 @@ void loop() {
 **Extra:** Armazene os UIDs autorizados e só desative o alarme se o cartão correto for aproximado.
 
 ---
-Aprofundar o uso de sensores e atuadores amplia a capacidade dos sistemas embarcados de perceber e agir no mundo real! 🌍📟
+Compreender sensores e atuadores amplia as possibilidades de interagir com o mundo físico — a base para automação, segurança e sistemas inteligentes! 🌍📟
