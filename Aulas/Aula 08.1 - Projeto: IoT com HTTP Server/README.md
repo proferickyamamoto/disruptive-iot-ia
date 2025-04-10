@@ -70,18 +70,16 @@ SE botão "Ativar Sistema" for pressionado:
 Implemente a interface descrita acima e a lógica completa de controle por web. Use HTML básico com rotas definidas no `WebServer` do ESP32.
 
 Você deve conseguir:
-- Acessar a página web pelo IP local do ESP32
-- Ver os dados atualizados a cada requisição
-- Acionar os LEDs corretamente conforme a distância
-- Interromper e retomar o sistema com os botões
+- Acessar a página web pelo IP local do ESP32, lembrando de estar na mesma rede do ESP32, ou seja utilize o celular;
+- Ver os dados atualizados a cada requisição;
+- Acionar os LEDs corretamente conforme a distância;
+- Interromper e retomar o sistema com os botões.
 
 ---
 
 ### 📚 Requisitos para Entrega
 - Código comentado (Arduino)
-- Página funcional no navegador
-- Explicação de como funciona no `README.md`
-
+- Apresentação na sala de aula
 ---
 
 ### 🚀 Extras (opcional)
