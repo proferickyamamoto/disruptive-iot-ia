@@ -77,8 +77,8 @@ Você deve conseguir:
 
 ---
 ### Código Exemplo
-´´´cpp
-// Gabarito - Estacionamento Inteligente com ESP32, HC-SR04 e LEDs
+```cpp
+// Estacionamento Inteligente com ESP32, HC-SR04 e LEDs
 
 #include <WiFi.h>
 #include <WebServer.h>
@@ -165,7 +165,7 @@ void handleAtivar() {
   server.send(303);
 }
 
-´´´
+```
 ---
 
 ### 📚 Requisitos para Entrega
