@@ -85,7 +85,7 @@ Você deve conseguir:
 
 //Insira o seus defines aqui
 
-const char* ssid = "SEU_SSID";
+const char* ssid = "SEU_SSID"; # Insira os dados do hostpot aqui!
 const char* password = "SUA_SENHA";
 
 WebServer server(80);
