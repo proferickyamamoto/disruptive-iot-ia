@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "author": "Arnaldo Viana",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": -94.48, "left": 93.8, "attrs": {} },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -109.39,
+      "left": -4.38,
+      "attrs": { "temperature": "15.9", "humidity": "54.5" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 3.76,
+      "left": 235.36,
+      "rotate": 90,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -71.08,
+      "left": 237.84,
+      "attrs": { "color": "red" }
+    }
+  ],
+  "connections": [
+    [ "dht1:VCC", "esp:5V", "red", [ "v0" ] ],
+    [ "r1:1", "led1:A", "green", [ "h0" ] ],
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "esp:GND.1", "led1:C", "black", [ "h57.38", "v-24.75", "h-0.26" ] ],
+    [ "esp:15", "r1:2", "green", [ "h0" ] ],
+    [ "dht1:SDA", "esp:11", "green", [ "v0" ] ],
+    [ "dht1:VCC", "esp:3V3.1", "red", [ "v0" ] ],
+    [ "esp:D15", "r1:2", "green", [ "h48.85", "v0.4", "h17.97" ] ],
+    [ "esp:D12", "dht1:SDA", "gold", [ "h0" ] ],
+    [ "esp:3V3", "dht1:VCC", "red", [ "v-0.33", "h11.31", "v51.62", "h-195.79" ] ],
+    [ "esp:GND.2", "dht1:GND", "black", [ "h0" ] ]
+  ],
+  "dependencies": {}
+}
