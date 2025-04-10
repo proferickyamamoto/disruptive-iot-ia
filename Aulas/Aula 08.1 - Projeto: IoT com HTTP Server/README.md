@@ -76,6 +76,97 @@ Você deve conseguir:
 - Interromper e retomar o sistema com os botões.
 
 ---
+### Código Exemplo
+´´´cpp
+// Gabarito - Estacionamento Inteligente com ESP32, HC-SR04 e LEDs
+
+#include <WiFi.h>
+#include <WebServer.h>
+
+//Insira o seus defines aqui
+
+const char* ssid = "SEU_SSID";
+const char* password = "SUA_SENHA";
+
+WebServer server(80);
+bool sistemaAtivo = true;
+
+void setup() {
+  Serial.begin(115200);
+
+  //Insira os setups de entrada e saídas aqui
+
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println("\nWiFi conectado!");
+  Serial.println(WiFi.localIP());
+
+  server.on("/", handlePagina);
+  server.on("/modo-noturno", HTTP_POST, handleDesligar);
+  server.on("/ativar", HTTP_POST, handleAtivar);
+  server.begin();
+}
+
+void loop() {
+  server.handleClient();
+
+  if (sistemaAtivo) {
+    float distancia = medirDistancia();
+    atualizarLEDs(distancia);
+  } else {
+    desligarLEDs();
+  }
+  delay(500);
+}
+
+float medirDistancia() {
+  //Insira o seu código aqui
+}
+
+void atualizarLEDs(float distancia) {
+  //Insira o seu código aqui
+}
+
+void desligarLEDs() {
+  //Insira o seu código aqui
+}
+
+void handlePagina() {
+  String html = "<html><head><meta http-equiv='refresh' content='2'/></head><body>";
+  html += "<h1>Estacionamento Inteligente</h1>";
+
+  if (sistemaAtivo) {
+    float d = medirDistancia();
+    html += "<p>Distancia: " + String(d) + " cm</p>";
+    String status = (d < 30) ? "<span style='color:red;'>PERIGO</span>" : (d < 100) ? "<span style='color:orange;'>ALERTA</span>" : "<span style='color:green;'>SEGURO</span>";
+    html += "<p>Status: " + status + "</p>";
+    html += "<form action='/modo-noturno' method='POST'><button type='submit'>Modo Noturno</button></form>";
+  } else {
+    html += "<p><b style='color:gray;'>Sistema em modo noturno</b></p>";
+    html += "<form action='/ativar' method='POST'><button type='submit'>Ativar Sistema</button></form>";
+  }
+
+  html += "</body></html>";
+  server.send(200, "text/html", html);
+}
+
+void handleDesligar() {
+  sistemaAtivo = false;
+  server.sendHeader("Location", "/");
+  server.send(303);
+}
+
+void handleAtivar() {
+  sistemaAtivo = true;
+  server.sendHeader("Location", "/");
+  server.send(303);
+}
+
+´´´
+---
 
 ### 📚 Requisitos para Entrega
 - Código comentado (Arduino)
