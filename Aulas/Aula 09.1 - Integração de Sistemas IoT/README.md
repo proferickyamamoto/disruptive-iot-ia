@@ -25,6 +25,8 @@ Nesta aula, vamos desenvolver um sistema completo de **registro de acessos com c
 ## 🧩 Etapa 1 – Leitura do Cartão RFID com ESP32
 ### 🎯 Objetivo
 Ler e exibir o UID do cartão/tag no Serial Monitor.
+![RC522](https://www.electrovigyan.com/wp-content/uploads/2021/04/pinout.jpg)
+
 ```cpp
 
 #include <SPI.h>
