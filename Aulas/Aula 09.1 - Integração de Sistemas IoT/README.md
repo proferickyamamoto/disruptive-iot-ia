@@ -22,8 +22,43 @@ Nesta aula, vamos desenvolver um sistema completo de **registro de acessos com c
 - Conta Google (para o Google Sheets)
 
 ---
+## 🧩 Etapa 1 – Leitura do Cartão RFID com ESP32
+### 🎯 Objetivo
+Ler e exibir o UID do cartão/tag no Serial Monitor.
+```cpp
 
-## 📝 Etapas da Aula
+#include <SPI.h>
+#include <MFRC522.h>
+
+#define SS_PIN 21
+#define RST_PIN 22
+
+MFRC522 rfid(SS_PIN, RST_PIN);
+
+void setup() {
+  Serial.begin(115200);
+  SPI.begin();              // Inicializa SPI
+  rfid.PCD_Init();          // Inicializa RFID
+  Serial.println("Aproxime a tag...");
+}
+
+void loop() {
+  if (!rfid.PICC_IsNewCardPresent() || !rfid.PICC_ReadCardSerial()) return;
+
+  Serial.print("UID: ");
+  for (byte i = 0; i < rfid.uid.size; i++) {
+    Serial.print(rfid.uid.uidByte[i], HEX);
+    Serial.print(i < rfid.uid.size - 1 ? " " : "");
+  }
+  Serial.println();
+  delay(1000);
+}
+
+```
+
+### ✅ Testar: Aproxime a tag e veja o UID no Monitor Serial.
+
+## 📝 Etapas do Projeto
 
 ### 1. Preparar a Planilha Google
 1. Acesse [https://sheets.google.com](https://sheets.google.com)
