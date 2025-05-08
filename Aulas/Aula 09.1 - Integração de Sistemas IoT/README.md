@@ -45,8 +45,9 @@ void setup() {
 }
 
 void loop() {
-  if (!rfid.PICC_IsNewCardPresent() || !rfid.PICC_ReadCardSerial()) return;
+  if (!rfid.PICC_IsNewCardPresent() || !rfid.PICC_ReadCardSerial())
 
+return
   Serial.print("UID: ");
   for (byte i = 0; i < rfid.uid.size; i++) {
     Serial.print(rfid.uid.uidByte[i], HEX);
