@@ -1,4 +1,3 @@
-````markdown
 # 📘 Aula 1 — Coleta + Extração de *Features* (ESP32 + Python)
 
 > **Objetivo:**  
