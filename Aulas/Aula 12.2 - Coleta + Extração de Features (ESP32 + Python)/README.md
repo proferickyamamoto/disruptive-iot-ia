@@ -101,7 +101,7 @@ void loop() {
 
 ---
 
-## 🔍 Explicação Bloco a Bloco
+## 🔍 Explicação do Código
 
 ### 1. Definição de pinos e parâmetros
 
