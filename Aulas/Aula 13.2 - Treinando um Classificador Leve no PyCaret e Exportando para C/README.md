@@ -197,8 +197,3 @@ Na **Aula 3** vamos:
 * Acender LEDs de acordo com a decisão do modelo.
 
 ---
-
-```
-
-👉 Erick, você gostaria que eu já monte também o **README.md da Aula 3** no mesmo estilo (com explicação bloco a bloco do código final embarcado)?
-```
