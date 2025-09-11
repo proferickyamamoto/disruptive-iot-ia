@@ -42,136 +42,204 @@ build_flags = -std=gnu++17
 ### Arquivo: `src/main.cpp`
 ```.cpp
 /*
-  Demo Dual-Core (ESP32) – Código Comentado
-  -------------------------------------------------------
-  O objetivo é demonstrar como criar duas tarefas FreeRTOS,
-  cada uma executando em um núcleo (core) diferente do ESP32.
+  Demo Dual-Core (ESP32) com Botões por Task — Código Comentado
+  --------------------------------------------------------------
+  Objetivo:
+    - Demonstrar execução em núcleos distintos (Core 0 e Core 1) com FreeRTOS.
+    - Cada task pisca um LED em período diferente.
+    - Dois botões (com debounce por polling) suspendem/retomam cada task.
 
-  O que este exemplo faz:
-  - Cria taskCore0 "pinnada" no Core 0 e taskCore1 no Core 1.
-  - Cada task pisca um LED com um período próprio (250 ms e 700 ms).
-  - Cada task imprime no Serial o ID do core em que está rodando.
-  - Usa vTaskDelayUntil para obter temporização estável (melhor que delay()).
+  Botões:
+    - BTN0 -> alterna (suspende/retoma) taskCore0 (Core 0)
+    - BTN1 -> alterna (suspende/retoma) taskCore1 (Core 1)
 
-  Observações:
-  - ESP32-WROOM/WROVER tem 2 cores (0 e 1).
-  - ESP32-C3 é single-core (este exemplo ainda roda, mas ambas as tasks
-    executam no mesmo core).
+  O que observar:
+    - Ao suspender uma task, o LED correspondente para de piscar.
+    - A outra task segue ativa, mostrando independência entre núcleos.
 */
 
 #include <Arduino.h>
 
-// ---------- Pinos dos LEDs ----------
-// Escolhemos dois pinos diferentes para visualizar cada task.
-// Em muitas devkits, o GPIO2 tem LED onboard (caso não tenha, use externo).
-constexpr gpio_num_t LED_CORE0 = GPIO_NUM_4; // LED controlado pela task no Core 0
-constexpr gpio_num_t LED_CORE1 = GPIO_NUM_2; // LED controlado pela task no Core 1 (onboard em várias placas)
+// ----------------- Pinos -----------------
+constexpr gpio_num_t LED_CORE0 = GPIO_NUM_4; // LED da task no Core 0
+constexpr gpio_num_t LED_CORE1 = GPIO_NUM_2; // LED da task no Core 1 (onboard em muitas placas)
 
-// ---------- Protótipos das tarefas ----------
-// Cada função abaixo será criada como uma "Task" FreeRTOS.
-// Elas vão rodar em loop infinito em núcleos distintos.
-void taskCore0(void*);  // pisca LED + loga o CoreID (Core 0)
-void taskCore1(void*);  // pisca LED + loga o CoreID (Core 1)
+constexpr gpio_num_t BTN0 = GPIO_NUM_25;     // Botão para controlar taskCore0
+constexpr gpio_num_t BTN1 = GPIO_NUM_26;     // Botão para controlar taskCore1
+
+// ----------------- Protótipos -----------------
+void taskCore0(void*);   // pisca LED_CORE0 no Core 0
+void taskCore1(void*);   // pisca LED_CORE1 no Core 1
+void taskButtons(void*); // faz polling com debounce e suspende/retoma tasks
+
+// ----------------- Handles das Tasks -----------------
+TaskHandle_t hTask0 = nullptr;
+TaskHandle_t hTask1 = nullptr;
+
+// Estados de suspensão (apenas para log e decisão de resume/suspend)
+volatile bool isSuspended0 = false;
+volatile bool isSuspended1 = false;
 
 void setup() {
-  // Inicializa a porta serial para depuração (logs)
   Serial.begin(115200);
-  // Pequena espera para estabilizar a serial após reset
   delay(200);
+  Serial.println("\n[Dual-core + Buttons] Iniciando...");
 
-  Serial.println();
-  Serial.println("[Dual-core demo] Criando tasks em cores diferentes...");
-
-  // Configura os pinos dos LEDs como saída
+  // LEDs como saída
   pinMode(LED_CORE0, OUTPUT);
   pinMode(LED_CORE1, OUTPUT);
-
-  // Garante que os LEDs iniciem desligados
   digitalWrite(LED_CORE0, LOW);
   digitalWrite(LED_CORE1, LOW);
 
-  // ---------- Criação das Tarefas com Pino de Core (xTaskCreatePinnedToCore) ----------
+  // Botões com pull-up interno; botão pressionado -> nível LOW
+  pinMode(BTN0, INPUT_PULLUP);
+  pinMode(BTN1, INPUT_PULLUP);
 
-  // Task "taskCore0" – rodará no Core 0
-  // Parâmetros:
-  //  - taskCore0: função da task
-  //  - "taskCore0": nome legível para debug
-  //  - 2048: tamanho da stack (palavras) — ajuste se necessário
-  //  - nullptr: parâmetro passado à task (não usado aqui)
-  //  - 2: prioridade (maior número = maior prioridade)
-  //  - nullptr: handle da task (não precisamos capturar)
-  //  - 0: ID do core para "pinnar" (Core 0)
+  // --------- Criação das Tasks Pinned por Núcleo ---------
+
+  // Task do Core 0 (pisca rápido)
   xTaskCreatePinnedToCore(
     taskCore0,
     "taskCore0",
     2048,
     nullptr,
-    2,
-    nullptr,
-    0 // <-- fixa no Core 0
+    2,          // prioridade
+    &hTask0,    // guardamos o handle para suspender/retomar
+    0           // <-- pinada no Core 0
   );
 
-  // Task "taskCore1" – rodará no Core 1
+  // Task do Core 1 (pisca mais lento)
   xTaskCreatePinnedToCore(
     taskCore1,
     "taskCore1",
     2048,
     nullptr,
     2,
+    &hTask1,
+    1           // <-- pinada no Core 1
+  );
+
+  // Task de leitura de botões (pode rodar em qualquer core; vamos de Core 0)
+  xTaskCreatePinnedToCore(
+    taskButtons,
+    "taskButtons",
+    2048,
     nullptr,
-    1 // <-- fixa no Core 1
+    3,          // prioridade ligeiramente maior para reagir bem ao clique
+    nullptr,
+    0
   );
 }
 
 void loop() {
-  // O loop() NÃO é usado ativamente.
-  // As tarefas FreeRTOS criadas acima executam "para sempre".
-  // Mantemos um pequeno delay para não ocupar CPU desnecessariamente.
+  // Não usado; tudo roda nas tasks.
   vTaskDelay(pdMS_TO_TICKS(1000));
 }
 
-// ---------- Implementação da Task do Core 0 ----------
-// Esta task:
-//  - Alterna (toggle) o LED_CORE0 a cada 250 ms
-//  - Imprime qual Core está executando a task (deve ser 0)
+// ----------------- Implementações -----------------
+
+// Task no Core 0: pisca LED_CORE0 a cada 250 ms
 void taskCore0(void*){
-  // vTaskDelayUntil usa "ticks" do RTOS; convertemos ms -> ticks
-  const TickType_t period = pdMS_TO_TICKS(250);  // período de 250 ms
-  // last guarda o tick da última execução para temporização precisa
+  const TickType_t period = pdMS_TO_TICKS(250);
   TickType_t last = xTaskGetTickCount();
 
-  for(;;){ // loop infinito da task
-    // xPortGetCoreID() retorna o núcleo corrente (0 ou 1)
+  for(;;){
+    // Exibe em qual core está executando (deve ser 0)
     Serial.print("[taskCore0] CoreID=");
     Serial.print(xPortGetCoreID());
-    Serial.println("  (toggle LED_CORE0)");
+    Serial.print("  Suspenso? ");
+    Serial.println(isSuspended0 ? "SIM":"NAO");
 
-    // Inverte o estado do LED (ON->OFF ou OFF->ON)
+    // Toggle do LED
     digitalWrite(LED_CORE0, !digitalRead(LED_CORE0));
 
-    // Aguarda até completar exatamente 'period' desde 'last'
-    // Isso evita acumular erros de tempo e mantém o piscar regular.
+    // Temporização precisa (melhor que delay)
     vTaskDelayUntil(&last, period);
   }
 }
 
-// ---------- Implementação da Task do Core 1 ----------
-// Esta task:
-//  - Alterna (toggle) o LED_CORE1 a cada 700 ms
-//  - Imprime qual Core está executando a task (deve ser 1)
+// Task no Core 1: pisca LED_CORE1 a cada 700 ms
 void taskCore1(void*){
-  const TickType_t period = pdMS_TO_TICKS(700);  // período de 700 ms
+  const TickType_t period = pdMS_TO_TICKS(700);
   TickType_t last = xTaskGetTickCount();
 
   for(;;){
     Serial.print("[taskCore1] CoreID=");
     Serial.print(xPortGetCoreID());
-    Serial.println("  (toggle LED_CORE1)");
+    Serial.print("  Suspenso? ");
+    Serial.println(isSuspended1 ? "SIM":"NAO");
 
     digitalWrite(LED_CORE1, !digitalRead(LED_CORE1));
     vTaskDelayUntil(&last, period);
   }
 }
+
+// Task de botões: polling + debounce simples; alterna suspensão/retomada
+void taskButtons(void*){
+  // Estados anteriores para detectar borda (HIGH->LOW = pressionado)
+  int prev0 = HIGH, prev1 = HIGH;
+
+  // Contadores para debounce (em ticks ou ms)
+  const TickType_t period = pdMS_TO_TICKS(10); // varredura a cada ~10 ms
+  TickType_t last = xTaskGetTickCount();
+
+  // Duração mínima do "LOW" para considerar um clique (debounce)
+  const uint8_t STABLE_COUNT = 4; // ~40 ms
+
+  uint8_t lowCount0 = 0;
+  uint8_t lowCount1 = 0;
+
+  for(;;){
+    int r0 = digitalRead(BTN0);
+    int r1 = digitalRead(BTN1);
+
+    // --- Debounce BTN0 ---
+    if (r0 == LOW) { // pressionado (pull-up)
+      if (lowCount0 < 255) lowCount0++;
+    } else {
+      lowCount0 = 0;
+    }
+
+    // Se manteve LOW por tempo suficiente e antes estava HIGH -> clique válido
+    if (lowCount0 == STABLE_COUNT && prev0 == HIGH) {
+      // Alterna estado: suspender ou retomar taskCore0
+      if (!isSuspended0) {
+        vTaskSuspend(hTask0);   // pausa a task do Core 0
+        isSuspended0 = true;
+        Serial.println("[Buttons] taskCore0 SUSPENSA");
+      } else {
+        vTaskResume(hTask0);    // retoma a task do Core 0
+        isSuspended0 = false;
+        Serial.println("[Buttons] taskCore0 RETOMADA");
+      }
+    }
+    prev0 = r0;
+
+    // --- Debounce BTN1 ---
+    if (r1 == LOW) {
+      if (lowCount1 < 255) lowCount1++;
+    } else {
+      lowCount1 = 0;
+    }
+
+    if (lowCount1 == STABLE_COUNT && prev1 == HIGH) {
+      if (!isSuspended1) {
+        vTaskSuspend(hTask1);   // pausa a task do Core 1
+        isSuspended1 = true;
+        Serial.println("[Buttons] taskCore1 SUSPENSA");
+      } else {
+        vTaskResume(hTask1);    // retoma a task do Core 1
+        isSuspended1 = false;
+        Serial.println("[Buttons] taskCore1 RETOMADA");
+      }
+    }
+    prev1 = r1;
+
+    // Mantém período fixo de leitura dos botões
+    vTaskDelayUntil(&last, period);
+  }
+}
+
 ```
 
 ---
