@@ -40,7 +40,7 @@ build_flags = -std=gnu++17
 ````
 
 ### Arquivo: `src/main.cpp`
-```
+```.cpp
 /*
   Demo Dual-Core (ESP32) – Código Comentado
   -------------------------------------------------------
